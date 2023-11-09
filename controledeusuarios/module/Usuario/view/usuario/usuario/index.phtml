@@ -4,7 +4,9 @@
 
 <h1>Lista de Usuários</h1>
 <table class="table table-striped">
-
+  <a href="<? $this->url('pessoa', ['action' => 'cadastrar']) ?> class="btn btn-success">
+    Cadastrar
+  </a>
   <tr>
     <th>Id</th>
     <th>Nome</th>
@@ -14,6 +16,8 @@
     <tr>
       <td><?= $usuario->getId() ?></td>
       <td><?= $usuario->getNome() ?></td>
+      <td><a href="<?= $this->url('usuario', ['action' => 'editar', 'id' =>$usuario->getId()])?>" class= "btn btn-info"><i class="giyphicon giyphicon-edit" > <?= $usuario->getNome() ?></a></td>
+      <td><a href="<?= $this->url('usuario', ['action' => 'remover', 'id' =>$usuario->getId()])?>" class= "btn btn-danger"><i class="giyphicon giyphicon-trash" > <?= $usuario->getNome() ?></a></td>
     </tr>
   <?php } ?>
 

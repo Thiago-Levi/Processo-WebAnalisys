@@ -29,10 +29,13 @@ class UsuarioTable{
   }
 
   public function salvarUsuario(Usuario $usuario){
+    
+    $senhaCipto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT );
+
     $data = [
       "nome" => $usuario->getNome(),
       "email" => $usuario->getEmail(),
-      "senha" => $usuario->getSenha()
+      "senha" => $senhaCipto
 
     ];
 

@@ -3,7 +3,7 @@
 namespace Usuario\Model;
 
 
-class Usuario{
+class Usuario {
   private $id;
   private $nome;
   private $email;
@@ -43,6 +43,14 @@ class Usuario{
   }
   public function setSenha($senha){
     $this->senha = $senha;
+  }
+
+  public function getArrayCopy() : array{
+    return [
+      'id' => $this->id,
+      'nome' => $this->nome,
+      'email' => $this->email,
+    ];
   }
 
 }

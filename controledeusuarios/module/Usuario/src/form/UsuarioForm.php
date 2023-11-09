@@ -13,15 +13,15 @@ class UsuarioForm extends Form {
     parent::__construct('usuario',[]);
 
     $this->add(new Hidden('id'));
-    $this->add(new Text('nome', ['label' => 'Nome']));
+    $this->add(new Text('nome', ['label' => 'nome']));
     $this->add(new Email('email', ['label' => 'email']));
     
     $submit = new Submit('submit');
     $submit -> setAttributes([
       'value' => 'Cadastrar', 
       'id' => 'submitbutton']);
-    $this->add($submit);
-
+    
+      $this->add($submit);
 
   }
 

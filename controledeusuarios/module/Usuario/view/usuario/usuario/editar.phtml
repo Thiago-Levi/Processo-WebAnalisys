@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Cadastrando Usuario';
+$title = 'Editar Usuario';
 $this->headTitle($title);
 ?>
 
@@ -8,7 +8,7 @@ $this->headTitle($title);
 
 <?php
 
-$form->setAtribute('action'. $this->url('usuario',['action' => 'cadastrar']));
+$form->setAtribute('action'. $this->url('usuario',['action' => 'editar', 'id' =>$id]));
 $form->prepare();
 
 echo $this->form->openTag($form);

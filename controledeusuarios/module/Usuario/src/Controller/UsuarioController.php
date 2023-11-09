@@ -2,9 +2,11 @@
 
 namespace Usuario\Controller;
 
+use Exception;
 use Usuario\Form\UsuarioForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use PhpParser\Node\Stmt\TryCatch;
 
 class UsuarioController extends AbstractActionController{
   
@@ -15,16 +17,14 @@ class UsuarioController extends AbstractActionController{
     $this->table = $table;
   }
   
-  public function indexAction()
-  {
+  public function indexAction(){
     return new ViewModel(["usuarios" => $this->table->getAll()]);
   }
 
-  public function cadastrarAction()
-  {
+  public function cadastrarAction(){
 
     $form = new UsuarioForm();
-    $form->get("Cadastrar");
+    $form->get("submit");
     $request = $this->getRequest();
     
     if($request['REQUEST_METHOD'] != 'POST'){
@@ -34,25 +34,76 @@ class UsuarioController extends AbstractActionController{
   
     $usuario = new \Usuario\Model\Usuario();
     $form->setData($request->getPost());
+
+    if(!$form->isValid()){
+      return new ViewModel(['form' => $form]);
+    }
     
-    return new ViewModel();
+    $usuario->exchageArray($form->getData());
+    $this->table->salvarUsuario($usuario);
+    return $this->redirect()->toRoute('usuario');
   }
 
-  public function salvarAction(){
-    return new ViewModel();
-  }
 
   public function editarAction(){
-    return new ViewModel();
+    $id = (int) $this -> params()->fromRoute('id');
+    
+    if(0 === $id){
+      return $this->redirect()->toRoute('usuario', ['action' => 'cadastrar']);
+    }
+
+    Try{ 
+      $usuario = $this->table->getUsuario($id);
+    } catch(Exception $exc){
+      return $this->redirect()->toRoute('usuario', ['action' => 'index']);
+    }
+
+    $form = new UsuarioForm();
+    $form->bind($usuario);
+    $form->get('submit')->setAttribute('value', 'Cadastrar');
+    $request = $this->getRequest();
+    $viewData  = ['id' =>$id, 'form' => $form];
+    
+    if($request['REQUEST_METHOD'] != 'POST'){
+      return $viewData;
+    }
+
+    $form->setData($request->getPost());
+
+    if(!$form->isValid()){
+      return $viewData;
+    }
+    
+    $this->table->salvarUsuario($form->getData());
+    return $this->redirect()->toRoute('usuario');
+
+  
   }
 
   public function removerAction(){
-    return new ViewModel();
+    $id = (int) $this -> params()->fromRoute('id', 0);
+    
+    if(0 === $id){
+      return $this->redirect()->toRoute('usuario');
+    }
+
+    $request = $this->getRequest();
+
+    if($request['REQUEST_METHOD'] == 'POST'){
+      $del = $request->getPost('del', 'Não');
+      if($del == 'Sim'){
+        $id = (int) $request->getPost('id');
+        $this->table->deletePessoa($id);
+
+      }
+
+      return $this->redirect()->toRoute('usuario');
+    }
+
+    return ['id' =>$id, 'usuario' => $this->table->getUsuario($id)];
   }
 
-  public function confirmacaoAction(){
-
-  }
+  
 }
 
 // a rota /usuario --> retorna o indexAction()
