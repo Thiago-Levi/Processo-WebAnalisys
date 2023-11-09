@@ -25,13 +25,20 @@ return [
   ],
   'controllers' => [
     'factories' =>[
-      Controller\UsuarioController::class => InvokableFactory::class,
+     // Controller\UsuarioController::class => InvokableFactory::class,
     ],
   ],
   'view_manager' => [
     'template_path_stack' => [
       'usuario' => __DIR__ . '/../view'
     ],
+  ],
+  'db' =>[
+    'driver' => 'Pdo_Pgsql',
+    'database' => 'usuario',
+    'username' => 'postgres',
+    'password' => 'postgres',
+    'hostname' => 'localhost'
   ],
 
 ];

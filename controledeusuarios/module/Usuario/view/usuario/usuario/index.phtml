@@ -1,6 +1,20 @@
 <?php
-  $nome = "Thiago Levi";
+
 ?>
 
-<h1>Minha View do controller usuário no module usuario</h1>
-<p><?=$nome?></p>
+<h1>Lista de Usuários</h1>
+<table class="table table-striped">
+
+  <tr>
+    <th>Id</th>
+    <th>Nome</th>
+  </tr>
+
+  <?php foreach ($usuarios as $usuario) { ?>
+    <tr>
+      <td><?= $usuario->getId() ?></td>
+      <td><?= $usuario->getNome() ?></td>
+    </tr>
+  <?php } ?>
+
+</table>
