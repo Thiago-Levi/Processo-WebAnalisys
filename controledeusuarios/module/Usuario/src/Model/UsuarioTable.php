@@ -30,12 +30,12 @@ class UsuarioTable{
 
   public function salvarUsuario(Usuario $usuario){
     
-    $senhaCipto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT );
+    $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT );
 
     $data = [
       "nome" => $usuario->getNome(),
       "email" => $usuario->getEmail(),
-      "senha" => $senhaCipto
+      "senha" => $senhaCripto
 
     ];
 

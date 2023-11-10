@@ -11,8 +11,6 @@ $this->headTitle($title);
 $form->setAtribute('action'. $this->url('usuario',['action' => 'cadastrar']));
 $form->prepare();
 
-echo $this->form->openTag($form);
-
 $id = $this->form->get('id');
 $nome = $this->form->get('nome');
 $email = $this->form->get('email');

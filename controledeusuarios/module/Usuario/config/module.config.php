@@ -36,12 +36,9 @@ return [
   'db' =>[
     'driver' => 'Pdo_Pgsql',
     'database' => 'usuario',
-    'username' => 'postgres',
-    'password' => 'postgres',
+    'username' => 'troquePorSeuUserNameLocal',
+    'password' => 'troquePorSuaSenhaNameLocal',
     'hostname' => 'localhost'
   ],
 
 ];
-
-// /usuario/listar/todos
-// /usuario/editar/1

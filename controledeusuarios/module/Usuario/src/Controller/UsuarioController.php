@@ -33,6 +33,7 @@ class UsuarioController extends AbstractActionController{
     }
   
     $usuario = new \Usuario\Model\Usuario();
+
     $form->setData($request->getPost());
 
     if(!$form->isValid()){
@@ -106,9 +107,4 @@ class UsuarioController extends AbstractActionController{
   
 }
 
-// a rota /usuario --> retorna o indexAction()
-// a rota /usuario/cadastrar --> retorna cadastrarAction()
-// a rota /usuario/salvar --> retorna salvarAction()
-// a rota /usuario/editar/1 --> editarAction()
-// a rota /usuario/remover/1 --> removerAction()
-// a rota /usuario/confirmacao --> confirmacaoAction()
+
