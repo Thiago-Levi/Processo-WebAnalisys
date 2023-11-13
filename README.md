@@ -49,11 +49,14 @@ Mas eu tenho muita vontade, tentei dar o meu melhor, sei que PHP é uma linguage
 ```
   CREATE DATABASE usuario;
 
-  CREATE TABLE usuario (
-      id SERIAL PRIMARY KEY,
-      nome TEXT,
-      email TEXT
-  );
+  CREATE DATABASE usuario;
+
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    nome TEXT,
+    email TEXT,
+    senha TEX
+);
 ```
 3. Para popular/"mockar" o banco de dados local utilizei essa query abaixo:
 ```
